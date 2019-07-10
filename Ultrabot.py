@@ -24,7 +24,6 @@ from operator import itemgetter
 from pokarray import pokarray
 from aiohttp import web
 import aiohttp
-from htmlert import html
 from dateutil import parser
 import time
 from secret import jsonfo
@@ -48,7 +47,6 @@ context = ssl.create_default_context()
 password = jsonfo["bot_email_pass"]
 port = 465
 
-update = 'Huge changes... For one, we added a ton of new commands! Check out the help command for more information.'
 prefix = '!'
 
 antispam_time = {}
@@ -86,12 +84,6 @@ roulette_count = 1
 cred = credentials.Certificate("key.json")
 firebase = firebase_admin.initialize_app(cred)
 db = firestore.client()
-
-users_ref = db.collection(u'hackathons')
-hackcollection = users_ref.stream()
-for i in hackcollection:
-    hackathon = i.to_dict()
-    hackathons.append(hackathon)
 
 black_ref = db.collection(u'blacklist')
 blacollection = black_ref.stream()
@@ -966,7 +958,6 @@ The blacklist system has no repercussions, but if someone (not an admin) sends a
 
     @commands.command(hidden=True)
     async def update(self, ctx):
-        global hackathons
         global rawleaders
         global playlists
         global leaders
@@ -976,14 +967,6 @@ The blacklist system has no repercussions, but if someone (not an admin) sends a
         rawleaders = []
         leaders = []
         playlists = []
-        thackathons = []
-
-        users_ef = db.collection(u'hackathons')
-        hackcllection = users_ef.get()
-        for i in hackcllection:
-            hackathon = i.to_dict()
-            thackathons.append(hackathon)
-        hackathons = thackathons
 
         leadercoll = db.collection(u'leaderboard')
         leaderboard = leadercoll.get()
@@ -1008,43 +991,6 @@ The blacklist system has no repercussions, but if someone (not an admin) sends a
             playlists.append(raw)
 
         playlists = playlists[0]
-
-    @commands.command(brief='An interactive hackathon catalog. Fun!', description='This command basically retrieves a list of hackathons from firebase, and allows you to see the details for those hackathons interactively.')
-    async def hackathons(self, ctx):
-        global prefix
-        global hackathons
-        global curr
-        msg = 'From the following, type in the number of the hackathon you would like to view, within the next 20 seconds.'
-        index = 1
-        await ctx.message.delete()
-        for i in hackathons:
-            msg = msg + '\n' + str(index) + ': ' + i['name']
-            index += 1
-        embed=discord.Embed(title='Help', description=msg, color=0x800080)
-        embed.set_author(name="Hackathons", icon_url=client.user.avatar_url)
-        embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
-        await ctx.author.send(embed=embed)
-
-        try:
-            author = ctx.author
-
-            def check(text):
-                return type(text.channel) is discord.DMChannel and text.author == author
-
-            msg = await client.wait_for('message', check=check, timeout=20)
-        except:
-            await ctx.author.send('Too Late!')
-            return
-        try:
-            msgindex = int(msg.content)
-            clihack = hackathons[msgindex - 1]
-            msg = f"Name: {clihack['name']}\n Date: {clihack['date']}\n Website: {clihack['website']}\nDiscord: {clihack['discord']}"
-            await ctx.author.send(msg)
-        except:
-            embed=discord.Embed(title='Help', description='That index was invalid, or I had some other error!', color=0x800080)
-            embed.set_author(name="Hackathons", icon_url=client.user.avatar_url)
-            embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
-            await ctx.author.send(embed=embed)
 
 
     @commands.command(hidden=True)
