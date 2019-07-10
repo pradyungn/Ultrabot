@@ -62,6 +62,11 @@ The music commands in Ultrabot retrieve a lot of information in order to serve u
 
 This part is pretty simple! Just make a google account without 2FA. After doing so, go to your account settings and turn on access from less secure apps. Although it seems scary, all this does is that it allows the bot to be able to log into your bot account if it has the proper credentials.
 
+### Making a Discord Bot Account
+
+For the bot to run, it needs to actually log into a container account. To do that, go the [discord developer portal](https://discordapp.com/developers/applications/) and create an application by clicking on 'New Application'. Then, click on the 'Bot' tab. Once there, create a bot by clicking 'Add Bot', Name the bot whatever you want, and the bot should generate. Along with the bot, a token should be generated. Keep the page open, as you will need to copy this token into the config file.
+
+
 ## Setting up Persistent Storage
 
 Another cool thing about Ultrabot is that it has persistent storage! This may seem trivial, but persistent storage between deployments is a hard thing to do! Lucky for us,  Google's Firebase makes things simpler than normal. Let's get right on that!
@@ -101,24 +106,27 @@ This isn't too hard! First of all, you're going to want to clone/fork the reposi
 
 ## Running the bot
 
-Ultrabot is made with it running on heroku in mind. If you don't want to run Ultrabot on Heroku, all you need is the Ultrabot.py, pokarray.py, and secret.py files.
+Ultrabot is made with it running on heroku in mind. If you don't want to run Ultrabot on Heroku, all you need is the Ultrabot.py, pokarray.py, and secret.py files. Make sure that you delete lines 1052-1081, as well as lines 1111-1140 in the caes you would like to use your own server. There are some other things too, but if you're using your own server you can probably figure out the rest of the setup by reading the rest of this guide.
 
-## Versioning
+Back to heroku! First of all, make sure that you have the cloned repo along with the secret.py all in a new repository on your own github. Make sure that none of the files are in the gitignore!
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+### Setting up a Heroku App
 
-## Authors
+Some of you might still be scratching your heads as to what Heroku is. In a nutshell, Heroku is a service that allows you to deploy web applications online, and it has a free tier. The cool thing about Heroku is that you can run non-web apps as well with a couple of tweaks to the way the app is set up. Let's get right on that!
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+Go [here](https://www.heroku.com) and create a new Heroku account. Once that's been done, create a new app, which can be called whatever you want, and can be hosted wherever you want. The only thing left is configuring the settings of this project.
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+### Configuring the Buildpacks
+
+Go into the settings of your Heroku Application. Scroll down, and there should be a section where you can add buildpacks. You're going to add four buildpacks. For each buildpack, it will ask you for a URL. Use the following URLs:
+* heroku/python
+* heroku/jvm
+* https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+* https://github.com/xrisk/heroku-opus.git
+
+
+And that's just about it! Go to the Deploy Tab, connect your Github Account, select the repo you put the Ultrabot files in, and deploy the application! Like magic, everything should start working, and the bot should join your server. Sweet!
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
