@@ -431,16 +431,16 @@ class Games(commands.Cog, name='Games'):
                 embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
                 await ctx.send(embed=embed)
                 return
-
         daily[str(ctx.author.id)] = str(now)
-
-
         msg = 'Winner winner, chicken dinner... you get 30 coins!'
         embed=discord.Embed(title='Daily', description=msg, color=0x008000)
         embed.set_author(name=f"Banker {cliname()}", icon_url=client.user.avatar_url)
         embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
         await ctx.send(embed=embed)
-        rawleaders[str(ctx.author.id)] += 30
+        try:
+            rawleaders[str(ctx.author.id)] += 30
+        except KeyError:
+            rawleaders[str(ctx.author.id)] = 30
         leaders[:] = (value for value in leaders if value[0] != str(ctx.author.id))
         leaders.append([str(ctx.author.id), rawleaders[str(ctx.author.id)]])
         leaders = sorted(leaders, key=itemgetter(1), reverse=True)
