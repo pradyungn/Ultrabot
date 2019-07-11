@@ -969,7 +969,7 @@ The blacklist system has no repercussions, but if someone (not an admin) sends a
         playlists = []
 
         leadercoll = db.collection(u'leaderboard')
-        leaderboard = leadercoll.get()
+        leaderboard = leadercoll.stream()
         for i in leaderboard:
             raw = i.to_dict()
             rawleaders.append(raw)
@@ -985,7 +985,7 @@ The blacklist system has no repercussions, but if someone (not an admin) sends a
 
 
         playcoll = db.collection(u'playlists')
-        rawplay = playcoll.get()
+        rawplay = playcoll.stream()
         for i in rawplay:
             raw = i.to_dict()
             playlists.append(raw)
@@ -1147,7 +1147,7 @@ class Code(commands.Cog, name='Code'):
             msg = f'Your program \'s output was the following:\n{out}'
             await runsend(msg, ctx.author)
             filer = discord.File(f'{ctx.author.id}.txt', filename=f'code.py')
-            msg = f'{ctx.author.mention} needs help with his python code! Can you someone help him? His code is in the txt file below, and his program output as well.\nProgram output:\n{out}'
+            msg = f'{ctx.author.mention} needs help with his python code! Can you someone help him? His code is in the file above.\nProgram output:\n{out}'
             mentoring = client.get_channel(jsonfo["code_help_id"])
             embed=discord.Embed(title='Runtime', description=msg, color=0xffff00)
             embed.set_author(name="Server", icon_url=client.user.avatar_url)
@@ -1189,7 +1189,7 @@ class Code(commands.Cog, name='Code'):
                     out[1] = out[1].replace('Picked up JAVA_TOOL_OPTIONS: -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8 \n', '')
                     msg = f'Compilation of your program returned the following:\n{out[1]}'
                     await runsend(msg, ctx.author)
-                    finout = f'{ctx.author.mention} needs help with his Java program! Attached below are his compiler output, as well as his code itself.\n{out[1]}'
+                    finout = f'{ctx.author.mention} needs help with his Java program! Attached above is his code. \nCompiler Output:{out[1]}'
                     filer = discord.File(f'{filename}.java', filename=f'code.java')
                     mentoring = client.get_channel(jsonfo["code_help_id"])
                     embed=discord.Embed(title='Runtime', description=finout, color=0xffff00)
@@ -1210,7 +1210,7 @@ class Code(commands.Cog, name='Code'):
                     else:
                         msg = 'Your program evaluated successfully, but did not return anything.'
 
-                    finout = f'{ctx.author.mention} needs help with his Java program! Attached below are his program output, as well as his code itself (compiled classfile and src code).\n{out}'
+                    finout = f'{ctx.author.mention} needs help with his Java program! Attached above is his code itself (compiled classfile and src code).\nProgram Output: {out}'
                     filer = discord.File(f'{filename}.java', filename=f'{filename}.java')
                     javile = discord.File(f'{filename}.class', filename=f'{filename}.class')
                     await runsend(msg, ctx.author)
