@@ -2,6 +2,15 @@
 
 A bot designed to organize your server. Moderation, Utility, and Fun, all wrapped up into one, lightweight bot.
 
+##Features:
+	* Music system
+	* Economy system: Earn coins with daily rewards, guessing pokemon, playing russian roulette, and betting coins. There's even a leaderboard!
+	* Reddit Scrapers: Fetches memes, dank memes, quotes, showerthoughts, and r/iamverysmart idiocy.
+	* Run Code: Run python and java code with the bot! Error sharing system also included.
+	* Moderation: Antispam, censoring, and mute included, with antispam penalties coded. 
+	* Variety: Have some fun with the various text commands implemented! There's even a text command to kill people!
+
+
 ## Foreword
 
 Please note that Ultrabot is specially designed to cater one server at a time. Make sure that you secure the bot to only one server. However, feel free to host multiple instances at once for multiple servers.
