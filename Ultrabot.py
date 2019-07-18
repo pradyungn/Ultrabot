@@ -923,6 +923,7 @@ The blacklist system has no repercussions, but if someone (not an admin) sends a
             embed.set_author(name="IIT IT", icon_url=client.user.avatar_url)
             embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
             await ctx.send(embed=embed)
+            return
 
 
         posscog = client.get_cog(cmdcog.capitalize())
