@@ -932,7 +932,7 @@ The blacklist system has no repercussions, but if someone (not an admin) sends a
                 embed = cogster(posscog)
                 await ctx.send(embed=embed)
                 return
-        posscmd = client.get_command(cmdcog.capitalize())
+        posscmd = client.get_command(cmdcog.lower())
         if posscmd is not None:
             desc = f'{posscmd.description}'
             desc = f'{desc}\n{usage(posscmd)}'
@@ -1579,7 +1579,7 @@ class Misc(commands.Cog, name='Misc'):
 
     @commands.command(brief='A little about me!')
     async def about(self, ctx):
-        msg = "Hi there!\nI'm Ultrabot! I was designed by Pradyun Narkadamilli, using the discord.py library.\nMy code will be on github shortly! Just make sure you have a server to run me on!"
+        msg = "Hi there!\nI'm Ultrabot! I was designed by Pradyun Narkadamilli, using the discord.py library.\nMy code is on github!"
         embed=discord.Embed(title='Autobiography', description=msg, color=0x800080)
         embed.set_author(name=f"Tour Guide {cliname()}", icon_url=client.user.avatar_url)
         embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
@@ -1593,6 +1593,13 @@ class Misc(commands.Cog, name='Misc'):
         embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
         await ctx.send(embed=embed)
 
+    @commands.command(brief='Find my code youngsta!')
+    async def code (self, ctx):
+        msg = "My code can be found [here](https://github.com/pradyungn/Ultrabot)"
+        embed=discord.Embed(title='Autobiography', description=msg, color=0x800080)
+        embed.set_author(name=f"Tour Guide {cliname()}", icon_url=client.user.avatar_url)
+        embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
+        await ctx.send(embed=embed)
 
 '''class Music(commands.Cog):
 
