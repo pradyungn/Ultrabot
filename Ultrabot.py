@@ -905,7 +905,7 @@ class Utils(commands.Cog, name='Utils'):
     async def help(self, ctx, *, cmdcog=None):
     #Let's see if the user supplied an argument! If not, let's send the default help text.
         if cmdcog is None:
-            embed=discord.Embed(title='Help', description=f"I see that you've come seeking help... look no further!\nTo get help with a command, do {client.command_prefix}help <command>.\nIf you want help with a category, do {client.command_prefix}help <category> with any of the below categories:\n**Code, Games, Misc, Music, Utils**\n\n There is a separate help page for the antispam system, which you can access with {client.command_prefix}help Antispam.", color=0x800080)
+            embed=discord.Embed(title='Help', description=f"I see that you've come seeking help... look no further!\nTo get help with a command, do {client.command_prefix}help <command>.\nIf you want help with a category, do {client.command_prefix}help <category> with any of the below categories:\n**Code, Games, Misc, Music, Utils**\n\n There is a separate help page for the antispam system, which you can access with **{client.command_prefix}help Antispam**.", color=0x800080)
             embed.set_author(name="IIT IT", icon_url=client.user.avatar_url)
             embed.set_footer(text = "Ultrabot by Pradyun Narkadamilli")
             await ctx.send(embed=embed)
