@@ -2,7 +2,7 @@
 
 A bot designed to organize your server. Moderation, Utility, and Fun, all wrapped up into one, lightweight bot.
 
-##Features:
+## Features:
 	* Music system
 	* Economy system: Earn coins with daily rewards, guessing pokemon, playing russian roulette, and betting coins. There's even a leaderboard!
 	* Reddit Scrapers: Fetches memes, dank memes, quotes, showerthoughts, and r/iamverysmart idiocy.
